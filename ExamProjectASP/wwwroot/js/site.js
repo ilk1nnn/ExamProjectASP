@@ -1,0 +1,3 @@
+﻿function TestFunction() {
+    alert("Worked")
+}

@@ -22,8 +22,29 @@ namespace ExamProjectASP.Controllers
             _accessor = accessor;
             _db = db;
         }
+		public async Task<IActionResult> SendFollow(string id)
+		{
+			var sender = await _userManager.GetUserAsync(HttpContext.User);
 
-        public async Task<IActionResult> Index()
+			var receiverUser = _userManager.Users.FirstOrDefault(u => u.Id == id);
+			if (receiverUser != null)
+			{
+				//receiverUser.FriendRequests.Add(new FriendRequest
+				//{
+				//	Content = $"{sender.UserName} send friend request at {DateTime.Now.ToLongDateString()}",
+				//	SenderId = sender.Id,
+				//	CustomIdentityUser = sender,
+				//	ReceiverId = id,
+				//	Status = "Request"
+				//});
+
+				await _userManager.UpdateAsync(receiverUser);
+
+
+			}
+			return Ok();
+		}
+		public async Task<IActionResult> Index()
 		{
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.User = user;
