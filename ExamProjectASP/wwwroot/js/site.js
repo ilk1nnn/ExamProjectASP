@@ -2,6 +2,38 @@
     //alert("Worked")
 }
 
+async function sendMessage() {
+    var userInput = document.getElementById("userInput");
+    var message = userInput.value;
+
+    if (message) {
+        await connection.invoke("SendChat", CurrentRoom2.name, currentUser, message);
+        userInput.value = "";
+    }
+}
+
+
+function addMessage(user, message) {
+    var chatContainer = document.getElementById("chatContainer");
+    var newMessage = document.createElement("div");
+    if (user == currentUser) {
+        user = "me"
+    }
+    newMessage.textContent = user + ": " + message;
+    chatContainer.appendChild(newMessage);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 function Funksiya() {
     console.log("Funksiya Worked")
     $.ajax({

@@ -53,3 +53,14 @@ async function Test(id) {
 }
 
 
+
+
+//------------Chat
+
+connection.on("GetMessage", (user, message) => {
+    addMessage(user, message)
+})
+
+
+
+

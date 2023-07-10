@@ -59,5 +59,11 @@ namespace ExamProjectASP.Hubs
             await Clients.All.SendAsync("GetAllOnline");
         }
 
+
+        public async Task SendChat(string room, string user, string message)
+        {
+            await Clients.Group(room).SendAsync("GetMessage", user, message);
+        }
+
     }
 }
