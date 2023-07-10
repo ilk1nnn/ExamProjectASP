@@ -7,7 +7,7 @@ function Funksiya() {
         url: "/Home/GetAllOnlineUsers",
         method: "GET",
         success: function (data) {
-            console.log(data)
+            
         }
     })
 }
