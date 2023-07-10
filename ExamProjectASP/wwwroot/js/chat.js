@@ -36,10 +36,13 @@ connection.on("Disconnect", function (info) {
 //    GetAllUsers();
 //})
 
-connection.on("Test", function () {
+connection.on("Test2", function () {
+    alert("Test2 Worked")
     TestFunction();
 })
 
 async function Test(id) {
+    console.log("Test Function Is Worked")
+    console.log(id)
     await connection.invoke("SendFollow",id)
 }
