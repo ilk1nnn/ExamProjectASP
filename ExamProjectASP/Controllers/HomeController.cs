@@ -72,7 +72,7 @@ namespace ExamProjectASP.Controllers
 
         public IActionResult Friends()
         {
-            ViewBag.Users = _db.Users.ToList();
+            ViewBag.Users = _db.Users;
 			return View();
         }
 
