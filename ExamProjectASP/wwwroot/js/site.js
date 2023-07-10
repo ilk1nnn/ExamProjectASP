@@ -1,3 +1,3 @@
 ﻿function TestFunction() {
-    alert("Worked")
+    //alert("Worked")
 }

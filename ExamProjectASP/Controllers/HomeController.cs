@@ -72,7 +72,7 @@ namespace ExamProjectASP.Controllers
 
         public IActionResult Friends()
         {
-            ViewBag.Users = UserHelper.ActiveUsers;
+            ViewBag.Users = _db.Users.Where(u => u.IsOnline == true).ToList();
 			return View();
         }
 
