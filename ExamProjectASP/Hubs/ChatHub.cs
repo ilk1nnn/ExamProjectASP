@@ -24,7 +24,7 @@ namespace ExamProjectASP.Hubs
 
 			var userItem = _context.Users.SingleOrDefault(x => x.Id == user.Id);
 			userItem.IsOnline = true;
-			await _context.SaveChangesAsync();
+			 _context.SaveChanges();
 			UserHelper.ActiveUsers.Add(user);
 
 			string info = user.UserName + " connected successfully" ;
@@ -42,7 +42,7 @@ namespace ExamProjectASP.Hubs
 			{
 				var userItem = _context.Users.SingleOrDefault(x => x.Id == user.Id);
 				userItem.IsOnline = false;
-				await _context.SaveChangesAsync();
+				_context.SaveChanges();
 				UserHelper.ActiveUsers.RemoveAll(u => u.Id == user.Id);
 			}
 			string info = user.UserName + " disconnected";
