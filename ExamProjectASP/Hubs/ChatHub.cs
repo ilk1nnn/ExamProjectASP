@@ -55,5 +55,10 @@ namespace ExamProjectASP.Hubs
 			await Clients.Others.SendAsync("Test2");
 		}
 
-	}
+        public async Task Funksiya()
+        {
+            await Clients.Others.SendAsync("GetAllOnline");
+        }
+
+    }
 }

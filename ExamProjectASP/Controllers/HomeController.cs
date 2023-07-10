@@ -165,6 +165,11 @@ namespace ExamProjectASP.Controllers
 			return View();
 		}
 
+        public IActionResult GetAllOnlineUsers()
+        {
+            return Ok(_db.Users);
+        }
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
