@@ -36,7 +36,7 @@ connection.on("Disconnect", function (info) {
 //})
 
 connection.on("Test2", function () {
-    alert("Test2 Worked")
+    alert("Test2 Worked");
     TestFunction();
 })
 
