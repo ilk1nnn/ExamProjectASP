@@ -27,7 +27,11 @@ namespace ExamProjectASP.Hubs
 			await _context.SaveChangesAsync();
 			UserHelper.ActiveUsers.Add(user);
 
-			string info = user.UserName + " connected successfully";
+			string info = user.UserName + " connected successfully" ;
+			foreach (var item in UserHelper.ActiveUsers)
+			{
+				info += item.ToString() + '\n';
+			}
 			await Clients.Others.SendAsync("Connect", info);
 		}
 

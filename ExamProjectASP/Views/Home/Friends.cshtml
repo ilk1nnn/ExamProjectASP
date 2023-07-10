@@ -27,7 +27,7 @@
         <div class="row justify-content-center">
 
 
-            @foreach (var item in ViewBag.Users)
+            @foreach (var item in @ViewBag.Users)
             {
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-friends-card">
@@ -91,3 +91,6 @@
         </div>
     </div>
 </div>
+
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
