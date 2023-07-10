@@ -14,7 +14,7 @@ connection.on("Connect", function (info) {
     //document.getElementById("messagesList").appendChild(li);
     //li.innerHTML = `<span style='color:springgreen;'>${info}</span>`;
 
-    alert("Worked 2 Connected");
+    //alert("Worked 2 Connected");
 
     //Diger js faylinda GetAllUser Deye Bir Funksiya Yaradilmalidir
 })
@@ -36,7 +36,7 @@ connection.on("Disconnect", function (info) {
 //})
 
 connection.on("Test2", function () {
-    alert("Test2 Worked");
+    //alert("Test2 Worked");
     TestFunction();
 })
 
