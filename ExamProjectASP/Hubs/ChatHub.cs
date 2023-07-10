@@ -48,7 +48,7 @@ namespace ExamProjectASP.Hubs
 
 		public async Task SendFollow(string id)
 		{
-			await Clients.Users(new String[] { id }).SendAsync("Test2");
+			await Clients.Others.SendAsync("Test2");
 		}
 
 	}
