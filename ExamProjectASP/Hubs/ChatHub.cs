@@ -21,8 +21,7 @@ namespace ExamProjectASP.Hubs
 		public async override Task OnConnectedAsync()
 		{
 			var user = await _userManager.GetUserAsync(_contextAccessor.HttpContext.User);
-
-			var userItem = _context.Users.SingleOrDefault(x => x.Id == user.Id);
+            var userItem = _context.Users.SingleOrDefault(x => x.Id == user.Id);
 			userItem.IsOnline = true;
 			 _context.SaveChanges();
 			UserHelper.ActiveUsers.Add(user);
@@ -57,7 +56,7 @@ namespace ExamProjectASP.Hubs
 
         public async Task Funksiya()
         {
-            await Clients.Others.SendAsync("GetAllOnline");
+            await Clients.All.SendAsync("GetAllOnline");
         }
 
     }

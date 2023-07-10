@@ -3,10 +3,13 @@
 }
 
 function Funksiya() {
+    console.log("Funksiya Worked")
     $.ajax({
         url: "/Home/GetAllOnlineUsers",
         method: "GET",
         success: function (data) {
+            console.log(data)
+
             let content = ``;
             for (var i = 0; i < data.length; i++) {
                 if (data[i].isOnline == true) {

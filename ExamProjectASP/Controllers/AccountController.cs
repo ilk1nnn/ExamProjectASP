@@ -86,7 +86,7 @@ namespace ExamProjectASP.Controllers
 			var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
 			if (result.Succeeded)
 			{
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("Friends", "Home");
 			}
 			ModelState.AddModelError("", "Invalid Login");
 			//}
