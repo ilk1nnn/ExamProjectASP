@@ -3,7 +3,7 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 
 connection.start().then(function () {
-    GetAllUsers();
+
 }).catch(function (err) {
     return console.error(err.toString());
 })
@@ -14,9 +14,9 @@ connection.on("Connect", function (info) {
     //document.getElementById("messagesList").appendChild(li);
     //li.innerHTML = `<span style='color:springgreen;'>${info}</span>`;
 
+    alert("Worked 2 Connected");
 
     //Diger js faylinda GetAllUser Deye Bir Funksiya Yaradilmalidir
-    GetAllUsers();
 })
 
 connection.on("Disconnect", function (info) {
@@ -26,7 +26,6 @@ connection.on("Disconnect", function (info) {
 
 
     //Diger js faylinda GetAllUser Deye Bir Funksiya Yaradilmalidir
-    GetAllUsers();
 })
 
 

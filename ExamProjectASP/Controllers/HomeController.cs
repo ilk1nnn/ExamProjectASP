@@ -1,4 +1,5 @@
 ﻿using ExamProjectASP.Entities;
+using ExamProjectASP.Helpers;
 using ExamProjectASP.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -71,7 +72,8 @@ namespace ExamProjectASP.Controllers
 
         public IActionResult Friends()
         {
-            return View();
+            ViewBag.Users = UserHelper.ActiveUsers;
+			return View();
         }
 
         public IActionResult Groups()
