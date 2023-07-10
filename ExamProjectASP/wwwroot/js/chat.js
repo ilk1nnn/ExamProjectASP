@@ -39,3 +39,7 @@ connection.on("Disconnect", function (info) {
 connection.on("Test", function () {
     TestFunction();
 })
+
+async function Test(id) {
+    await connection.invoke("SendFollow",id)
+}

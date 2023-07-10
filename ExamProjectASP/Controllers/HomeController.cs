@@ -22,8 +22,14 @@ namespace ExamProjectASP.Controllers
             _accessor = accessor;
             _db = db;
         }
+
+
+        
 		public async Task<IActionResult> SendFollow(string id)
 		{
+
+
+
 			var sender = await _userManager.GetUserAsync(HttpContext.User);
 
 			var receiverUser = _userManager.Users.FirstOrDefault(u => u.Id == id);
@@ -37,7 +43,7 @@ namespace ExamProjectASP.Controllers
 				//	ReceiverId = id,
 				//	Status = "Request"
 				//});
-
+                
 				await _userManager.UpdateAsync(receiverUser);
 
 
