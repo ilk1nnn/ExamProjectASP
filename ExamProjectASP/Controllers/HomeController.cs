@@ -1,4 +1,5 @@
-﻿using ExamProjectASP.Entities;
+﻿using ExamProjectASP.Dtos;
+using ExamProjectASP.Entities;
 using ExamProjectASP.Helpers;
 using ExamProjectASP.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -134,12 +135,18 @@ namespace ExamProjectASP.Controllers
         }
 
         [HttpGet($"home/live-chat")]
-        public IActionResult LiveChat()
+        public async Task<IActionResult> LiveChat()
         {
-            ViewBag.Users = _db.Users;
+            var dto = new LiveChatDto { Users = _db.Users.ToList(), CurrentUser = await _userManager.GetUserAsync(HttpContext.User) };
+            ViewBag.dto = dto;
             return View("live-chat");
         }
+        [HttpPost]
+        public IActionResult AddToDatabase(string Chat)
+        {
 
+            return Ok();
+        }
 
         [HttpGet($"home/forgot-password")]
         public IActionResult ForgotPassword()

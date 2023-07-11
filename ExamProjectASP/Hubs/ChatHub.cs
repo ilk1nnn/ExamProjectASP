@@ -60,10 +60,12 @@ namespace ExamProjectASP.Hubs
         }
 
 
-        public async Task SendChat(string room, string user, string message)
+        public async Task SendChat(string user, string message)
         {
-            await Clients.Group(room).SendAsync("GetMessage", user, message);
+            await Clients.User(user).SendAsync("GetMessage", user, message);
         }
+
+		
 
     }
 }

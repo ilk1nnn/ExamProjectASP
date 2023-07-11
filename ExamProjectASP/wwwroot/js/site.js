@@ -2,24 +2,49 @@
     //alert("Worked")
 }
 
-async function sendMessage() {
-    var userInput = document.getElementById("userInput");
-    var message = userInput.value;
 
-    if (message) {
-        await connection.invoke("SendChat", CurrentRoom2.name, currentUser, message);
-        userInput.value = "";
-    }
-}
 
 
 function addMessage(user, message) {
-    var chatContainer = document.getElementById("chatContainer");
-    var newMessage = document.createElement("div");
+    var chatContainer = document.getElementById("chat-content");
+    var newMessage = "";
     if (user == currentUser) {
-        user = "me"
+        newMessage = `
+                <div class="chat chat-left">
+                    <div class="chat-avatar">
+                        <a routerLink="/profile" class="d-inline-block">
+                            <img src="~/assets/images/user/user-2.jpg" width="50" height="50" class="rounded-circle" alt="image">
+                        </a>
+                    </div>
+
+                    <div class="chat-body">
+                        <div class="chat-message">
+                            <p>`${ message } `</p>
+                            <span class="time d-block">7:45 AM</span>
+                        </div>
+                    </div>
+                </div>
+        `
     }
-    newMessage.textContent = user + ": " + message;
+    else {
+        newMessage = `
+        <div class="chat">
+                    <div class="chat-avatar">
+                        <a routerLink="/profile" class="d-inline-block">
+                            <img src="~/assets/images/user/user-11.jpg" width="50" height="50" class="rounded-circle" alt="image">
+                        </a>
+                    </div>
+
+                    <div class="chat-body">
+                        <div class="chat-message">
+                            <p>`${ message} `</p>
+                            <span class="time d-block">7:45 AM</span>
+                        </div>
+                    </div>
+                </div>
+                `
+    }
+    
     chatContainer.appendChild(newMessage);
 }
 
