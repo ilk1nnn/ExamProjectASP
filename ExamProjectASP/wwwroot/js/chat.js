@@ -53,7 +53,9 @@ async function Test(id) {
     await connection.invoke("SendFollow",id)
 }
 
-
+async function SendMessageHub(senderId, message) {
+    await connection.invoke("SendChat");
+}
 
 
 //------------Chat

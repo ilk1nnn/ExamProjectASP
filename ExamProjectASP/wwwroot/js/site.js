@@ -55,10 +55,6 @@ function addMessage(user, message) {
 
 
 
-
-
-
-
 function Funksiya() {
     console.log("Funksiya Worked")
     $.ajax({
