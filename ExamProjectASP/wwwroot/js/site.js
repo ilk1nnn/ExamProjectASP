@@ -2,6 +2,38 @@
     //alert("Worked")
 }
 
+async function sendMessage() {
+    var userInput = document.getElementById("userInput");
+    var message = userInput.value;
+
+    if (message) {
+        await connection.invoke("SendChat", CurrentRoom2.name, currentUser, message);
+        userInput.value = "";
+    }
+}
+
+
+function addMessage(user, message) {
+    var chatContainer = document.getElementById("chatContainer");
+    var newMessage = document.createElement("div");
+    if (user == currentUser) {
+        user = "me"
+    }
+    newMessage.textContent = user + ": " + message;
+    chatContainer.appendChild(newMessage);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 function Funksiya() {
     console.log("Funksiya Worked")
     $.ajax({
@@ -9,10 +41,13 @@ function Funksiya() {
         method: "GET",
         success: function (data) {
             console.log(data)
-
+            console.log("hello")
             let content = ``;
             for (var i = 0; i < data.length; i++) {
-                if (data.iOnline == true) {
+                if (data[i].isOnline==true) {
+                    console.log(data[i].name)
+                }
+                console.log(data[i].isOnline);
                     content += `
                     <div  class="col-lg-3 col-sm-6" >
 

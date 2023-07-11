@@ -17,7 +17,7 @@ connection.on("Connect", function (info) {
     //alert("Worked 2 Connected");
 
     //Diger js faylinda GetAllUser Deye Bir Funksiya Yaradilmalidir
-     connection.invoke("Funksiya")
+    connection.invoke("Funksiya")
 })
 
 connection.on("Disconnect", function (info) {
@@ -43,7 +43,7 @@ connection.on("Test2", function () {
 
 connection.on("GetAllOnline", function () {
     //alert("Test2 Worked");
-    Funksiya2();
+    Funksiya();
 })
 
 async function Test(id) {
@@ -51,5 +51,16 @@ async function Test(id) {
     console.log(id)
     await connection.invoke("SendFollow",id)
 }
+
+
+
+
+//------------Chat
+
+connection.on("GetMessage", (user, message) => {
+    addMessage(user, message)
+})
+
+
 
 
