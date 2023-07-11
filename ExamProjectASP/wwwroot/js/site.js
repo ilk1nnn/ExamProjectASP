@@ -2,49 +2,126 @@
     //alert("Worked")
 }
 
+function SendMessageAjax(recieverId, senderId) {
 
+
+    var userInput = document.getElementById("user-message");
+    var message = userInput.value;
+    console.log(message)
+    SendMessageHub(senderId, message)
+
+    //await connection.invoke("SendChat", currentUser, message);
+    userInput.value = "";
+
+    //let obj = {
+    //    "recieverId" = recieverId,
+    //    "senderId" = senderId,
+    //    "message" = message
+    //}
+    //$.ajax({
+    //    url: '@Url.Action("SendMessage", "Home")',
+    //    type: 'POST',
+    //    data: JSON.stringify(obj),
+    //    success: function (response) {
+    //        // Handle the successful response from the server
+    //        console.log(response);
+    //    },
+    //    error: function (xhr, status, error) {
+    //        // Handle any errors that occurred during the AJAX request
+    //        console.error(error);
+    //    }
+    //});
+
+
+
+}
+
+function GoChat(reciever, sender) {
+    let result = reciever.split(';');
+    $("#liveChatContainer").html(`
+            <div class="live-chat-header d-flex justify-content-between align-items-center">
+                <div class="live-chat-info">
+                    <a href="#"><img src="~/assets/images/user/user-11.jpg" class="rounded-circle" alt="image"></a>
+                    <h3>
+                            <a>'${result[1]}' </a>
+                    </h3>
+                </div>
+
+                <ul class="live-chat-right">
+                    <li>
+                        <button class="btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Phone" type="button"><i class="ri-phone-fill"></i></button>
+                    </li>
+                    <li>
+                        <button class="btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Live" type="button"><i class="ri-live-fill"></i></button>
+                    </li>
+                    <li>
+                        <button class="btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" type="button"><i class="ri-delete-bin-line"></i></button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="live-chat-container">
+                <div class="chat-content">
+
+
+
+                </div>
+
+                <div class="chat-list-footer">
+                    <div class="btn-box d-flex align-items-center me-3">
+                        <button class="file-attachment-btn d-inline-block me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="File Attachment" type="button"><i class="ri-attachment-2"></i></button>
+
+                        <button class="emoji-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Emoji" type="button"><i class="ri-user-smile-line"></i></button>
+                    </div>
+
+                    <input id="user-message" type="text" class="form-control" placeholder="Type your message...">
+
+                    <button onclick="SendMessageAjax('${result[0]}','${sender}')" class="send-btn d-inline-block">Send</button>
+                </div>
+            </div>
+            `)
+}
 
 
 function addMessage(user, message) {
-    var chatContainer = document.getElementById("chat-content");
+    console.log(message)
+    var chatContainer = document.getElementsByClassName("chat-content");
     var newMessage = "";
-    if (user == currentUser) {
-        newMessage = `
-                <div class="chat chat-left">
-                    <div class="chat-avatar">
-                        <a routerLink="/profile" class="d-inline-block">
-                            <img src="~/assets/images/user/user-2.jpg" width="50" height="50" class="rounded-circle" alt="image">
-                        </a>
-                    </div>
+    //if (user == currentUser) {
+    //    newMessage = `
+    //            <div class="chat chat-left">
+    //                <div class="chat-avatar">
+    //                    <a routerLink="/profile" class="d-inline-block">
+    //                        <img src="~/assets/images/user/user-2.jpg" width="50" height="50" class="rounded-circle" alt="image">
+    //                    </a>
+    //                </div>
 
-                    <div class="chat-body">
-                        <div class="chat-message">
-                            <p>`${ message } `</p>
-                            <span class="time d-block">7:45 AM</span>
-                        </div>
-                    </div>
-                </div>
-        `
-    }
-    else {
-        newMessage = `
+    //                <div class="chat-body">
+    //                    <div class="chat-message">
+    //                        <p>'${ message }'</p>
+    //                        <span class="time d-block">7:45 AM</span>
+    //                    </div>
+    //                </div>
+    //            </div>
+    //    `
+    //}
+    newMessage = `
         <div class="chat">
                     <div class="chat-avatar">
                         <a routerLink="/profile" class="d-inline-block">
-                            <img src="~/assets/images/user/user-11.jpg" width="50" height="50" class="rounded-circle" alt="image">
+                            <img src="/assets/images/user/user-11.jpg" width="50" height="50" class="rounded-circle" alt="image">
                         </a>
                     </div>
 
                     <div class="chat-body">
                         <div class="chat-message">
-                            <p>`${ message} `</p>
+                            <p>'${message}'</p>
                             <span class="time d-block">7:45 AM</span>
                         </div>
                     </div>
                 </div>
                 `
-    }
-    
+
     chatContainer.appendChild(newMessage);
 }
 
