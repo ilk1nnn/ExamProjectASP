@@ -233,7 +233,7 @@
         </div>
 
         <div class="chat-list-footer">
-            <form class="d-flex align-items-center">
+            <form asp-controller="Home" asp-action="SendChat" method="post" class="d-flex align-items-center">
                 <div class="btn-box d-flex align-items-center me-3">
                     <button class="file-attachment-btn d-inline-block me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="File Attachment" type="button"><i class="ri-attachment-2"></i></button>
 
@@ -247,3 +247,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    function SendMessageAjax() {
+        var parameterValue = "example parameter value";
+
+        $.ajax({
+            url: '@Url.Action("SendMessage", "Home")',
+            type: 'POST',
+            data: { param: parameterValue },
+            success: function (response) {
+                // Handle the successful response from the server
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                // Handle any errors that occurred during the AJAX request
+                console.error(error);
+            }
+        });
+    }
+</script>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+<script src="~/js/site.js"></script>

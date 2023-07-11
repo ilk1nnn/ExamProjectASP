@@ -136,6 +136,7 @@ namespace ExamProjectASP.Controllers
         [HttpGet($"home/live-chat")]
         public IActionResult LiveChat()
         {
+
             return View("live-chat");
         }
 
