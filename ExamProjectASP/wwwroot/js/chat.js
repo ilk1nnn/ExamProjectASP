@@ -17,7 +17,7 @@ connection.on("Connect", function (info) {
     //alert("Worked 2 Connected");
 
     //Diger js faylinda GetAllUser Deye Bir Funksiya Yaradilmalidir
-    await connection.invoke("Funksiya")
+     connection.invoke("Funksiya")
 })
 
 connection.on("Disconnect", function (info) {

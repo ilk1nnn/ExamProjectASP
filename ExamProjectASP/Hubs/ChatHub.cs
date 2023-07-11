@@ -23,8 +23,8 @@ namespace ExamProjectASP.Hubs
 			var user = await _userManager.GetUserAsync(_contextAccessor.HttpContext.User);
             var userItem = _context.Users.SingleOrDefault(x => x.Id == user.Id);
 			userItem.IsOnline = true;
-			 _context.SaveChanges();
-			UserHelper.ActiveUsers.Add(user);
+            await _context.SaveChangesAsync();
+            UserHelper.ActiveUsers.Add(user);
 
 			string info = user.UserName + " connected successfully" ;
 			foreach (var item in UserHelper.ActiveUsers)
@@ -41,7 +41,7 @@ namespace ExamProjectASP.Hubs
 			{
 				var userItem = _context.Users.SingleOrDefault(x => x.Id == user.Id);
 				userItem.IsOnline = false;
-				_context.SaveChanges();
+				await _context.SaveChangesAsync();
 				UserHelper.ActiveUsers.RemoveAll(u => u.Id == user.Id);
 			}
 			string info = user.UserName + " disconnected";

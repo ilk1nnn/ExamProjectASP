@@ -12,6 +12,7 @@ function Funksiya() {
 
             let content = ``;
             for (var i = 0; i < data.length; i++) {
+                if (data.iOnline == true) {
                     content += `
                     <div  class="col-lg-3 col-sm-6" >
 
@@ -68,9 +69,11 @@ function Funksiya() {
                 </div >
             
 `;
+
+                }
                
             }
-                $("#usersfortest").html(content);
+            document.getElementById("usersfortest").innerHTML = content;
            
         }
     })
