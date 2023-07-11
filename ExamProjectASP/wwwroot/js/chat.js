@@ -62,6 +62,7 @@ async function SendMessageHub(senderId, message) {
 
 connection.on("GetMessage", (user, message) => {
     addMessage(user, message)
+
 })
 
 
