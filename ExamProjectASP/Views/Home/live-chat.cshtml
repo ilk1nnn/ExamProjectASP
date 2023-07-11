@@ -43,24 +43,24 @@
             userInput.value = "";
         }
 
-        let obj = {
-            "recieverId" = recieverId,
-            "senderId" = senderId,
-            "message" = message
-        }
-        $.ajax({
-            url: '@Url.Action("SendMessage", "Home")',
-            type: 'POST',
-            data: JSON.stringify(obj),
-            success: function (response) {
-                // Handle the successful response from the server
-                console.log(response);
-            },
-            error: function (xhr, status, error) {
-                // Handle any errors that occurred during the AJAX request
-                console.error(error);
-            }
-        });
+        //let obj = {
+        //    "recieverId" = recieverId,
+        //    "senderId" = senderId,
+        //    "message" = message
+        //}
+        //$.ajax({
+        //    url: '@Url.Action("SendMessage", "Home")',
+        //    type: 'POST',
+        //    data: JSON.stringify(obj),
+        //    success: function (response) {
+        //        // Handle the successful response from the server
+        //        console.log(response);
+        //    },
+        //    error: function (xhr, status, error) {
+        //        // Handle any errors that occurred during the AJAX request
+        //        console.error(error);
+        //    }
+        //});
 
 
 

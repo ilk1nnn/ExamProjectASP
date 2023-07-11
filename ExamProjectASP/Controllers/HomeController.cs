@@ -144,7 +144,8 @@ namespace ExamProjectASP.Controllers
         [HttpPost]
         public IActionResult AddToDatabase(string Chat)
         {
-
+            //var result = Newtonsoft.Json.JsonConvert.DeserializeObject(Chat);
+            //var chat = new Message {  }
             return Ok();
         }
 
