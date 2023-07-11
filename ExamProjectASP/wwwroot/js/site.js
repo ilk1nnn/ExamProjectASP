@@ -54,7 +54,7 @@ function Funksiya() {
                         <div class="single-friends-card">
                             <div class="friends-image">
                                 <a href="#">
-                                    <img src="~/assets/images/friends/friends-bg-1.jpg" alt="image">
+                                    <img src="${}~/assets/images/friends/friends-bg-1.jpg" alt="image">
                                 </a>
                                 <div class="icon">
                                     <a href="#"><i class="flaticon-user"></i></a>
