@@ -52,7 +52,7 @@ function Funksiya() {
                         <div class="single-friends-card">
                             <div class="friends-image">
                                 <a href="#">
-                                    <img src="${}~/assets/images/friends/friends-bg-1.jpg" alt="image">
+                                    <img src="/assets/images/friends/friends-bg-1.jpg" alt="image">
                                 </a>
                                 <div class="icon">
                                     <a href="#"><i class="flaticon-user"></i></a>
@@ -61,7 +61,7 @@ function Funksiya() {
                             <div class="friends-content">
                                 <div class="friends-info d-flex justify-content-between align-items-center">
                                     <a href="#">
-                                        <img src="~/assets/images/friends/friends-1.jpg" alt="image">
+                                        <img src="/assets/images/friends/friends-1.jpg" alt="image">
                                     </a>
                                     <div class="text ms-3">
                                         
