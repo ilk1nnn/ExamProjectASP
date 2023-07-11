@@ -136,7 +136,7 @@ namespace ExamProjectASP.Controllers
         [HttpGet($"home/live-chat")]
         public IActionResult LiveChat()
         {
-
+            ViewBag.Users = _db.Users;
             return View("live-chat");
         }
 
@@ -149,9 +149,11 @@ namespace ExamProjectASP.Controllers
 
 
         [HttpGet($"home/my-profile")]
-        public IActionResult MyProfile()
+        public async Task<IActionResult> MyProfile()
         {
-            return View("my-profile");
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+			ViewBag.User = user;
+			return View("my-profile");
         }
 
 
