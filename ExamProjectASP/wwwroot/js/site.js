@@ -44,10 +44,8 @@ function Funksiya() {
             console.log("hello")
             let content = ``;
             for (var i = 0; i < data.length; i++) {
-                if (data[i].isOnline==true) {
-                    console.log(data[i].name)
-                }
-                console.log(data[i].isOnline);
+                if (data[i].isOnline == true) {
+
                     content += `
                     <div  class="col-lg-3 col-sm-6" >
 
@@ -104,10 +102,11 @@ function Funksiya() {
                 </div >
             
 `;
-               
+
+                }
             }
-                $("#usersfortest").html(content);
-           
+            $("#usersfortest").html(content);
+
         }
     })
 }

@@ -27,6 +27,7 @@ connection.on("Disconnect", function (info) {
 
 
     //Diger js faylinda GetAllUser Deye Bir Funksiya Yaradilmalidir
+    connection.invoke("Funksiya")
 })
 
 
