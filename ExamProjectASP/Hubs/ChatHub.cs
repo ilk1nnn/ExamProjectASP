@@ -56,7 +56,8 @@ namespace ExamProjectASP.Hubs
 
         public async Task Funksiya()
         {
-            await Clients.All.SendAsync("GetAllOnline");
+			var user = await _userManager.GetUserAsync(_contextAccessor.HttpContext.User);
+            await Clients.All.SendAsync("GetAllOnline",user.Id);
         }
 
 
@@ -65,7 +66,10 @@ namespace ExamProjectASP.Hubs
             await Clients.User(user).SendAsync("GetMessage", user, message);
         }
 
-		
+		public async Task SendFriendRequest(string sender,string receiver)
+		{
+			await Clients.User(receiver).SendAsync("SendFriendRequestFunction", sender);
+		}
 
     }
 }

@@ -185,12 +185,12 @@ namespace ExamProjectASP.Controllers
         [HttpPost]
         public IActionResult AddNotification(string result)
         {
-            var result3 = Newtonsoft.Json.JsonConvert.DeserializeObject<string>(result);
-            var result2 = result3.Split(';');
+            var result2 = result.Split(';');
             if (result2 != null)
             {
                 var friendRequest = new FriendRequest { SenderId = result2[0], ReceiverId = result2[1]};
                 _db.FriendRequests.Add(friendRequest);
+                _db.SaveChanges();
                 //var notification = new Notification { SenderId = result2[0], OwnerId = result2[1], 
                 //    Caption = $"Sene dostluq gonderdi {_userManager.Users.FirstOrDefault(u => u.Id == result2[0])}", Date = DateTime.Now };
                 //_db.Notifications.Add(notification);

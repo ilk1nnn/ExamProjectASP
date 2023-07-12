@@ -13,7 +13,7 @@ function SendMessageAjax(recieverId, senderId) {
     var newMessage = "";
     SendMessageHub(recieverId, message)
     var chatContainer = document.getElementById("result123");
-        newMessage = `
+    newMessage = `
                 <div class="chat chat-left">
                     <div class="chat-avatar">
                         <a routerLink="/profile" class="d-inline-block">
@@ -58,17 +58,24 @@ function SendMessageAjax(recieverId, senderId) {
 }
 
 function AddFriend(senderId, recieverId) {
-    var result = senderId +";"+ recieverId;
+    var result2 = senderId + ";" + recieverId;
     $.ajax({
         url: "/Home/AddNotification",
         type: "POST",
-        data: result,
-        contentType: "application/json",
+        dataType: 'JSON',
+        data: { result: result2 },
         success: function (data) {
             console.log(data);
-        }
-        
+        },
+        error:
+            function (response) {
+                console.log(response);
+            }
+
     })
+    var buttonelement = document.getElementById("btn" + receiverId);
+    buttonelement.innerHTML = "PENDING";
+    SendFriendRequest(senderId,receiverId)
 }
 
 function GoChat(reciever, sender) {
@@ -145,12 +152,26 @@ function addMessage(user, message) {
 
 
 
+function GetFriendRequest(senderId) {
+    console.log("isliyir");
+    let element = document.getElementById(senderId);
+    element.innerHTML = `
+
+    <section style='display:inline-block;'>
+        <button  style='background-color:green;' type="submit">Accept Request</button>
+        <button style='background-color:red;' type="submit">Decline Request</button>
+    </section>
+
+    
+
+`;
+}
 
 
 
-
-function Funksiya() {
+function Funksiya(id) {
     console.log("Funksiya Worked")
+    console.log("Id"+id);
     $.ajax({
         url: "/Home/GetAllOnlineUsers",
         method: "GET",
@@ -167,7 +188,6 @@ function Funksiya() {
                         <div class="single-friends-card">
                             <div class="friends-image">
                                 <a href="#">
-                                    <img src="/images/profile.png" alt="image">
                                 </a>
                                 <div class="icon">
                                     <a href="#"><i class="flaticon-user"></i></a>
@@ -205,8 +225,8 @@ function Funksiya() {
                                     </li>
                                 </ul>
                                 <div class="button-group d-flex justify-content-between align-items-center">
-                                    <div class="add-friend-btn">
-                                        <button type="submit">Add Friend</button>
+                                    <div id='${data[i].id}' class="add-friend-btn">
+                                        <button id='btn${data[i].id}' onclick='AddFriend('${id}','${data[i].id}')' type="submit">Add Friend</button>
                                     </div>
                                     <div class="send-message-btn">
                                         <button type="submit">Send Message</button>

@@ -42,9 +42,9 @@ connection.on("Test2", function () {
     TestFunction();
 })
 
-connection.on("GetAllOnline", function () {
+connection.on("GetAllOnline", (id) => {
     //alert("Test2 Worked");
-    Funksiya();
+    Funksiya(id);
 })
 
 async function Test(id) {
@@ -56,6 +56,16 @@ async function Test(id) {
 async function SendMessageHub(senderId, message) {
     await connection.invoke("SendChat",senderId,message);
 }
+
+
+
+async function SendFriendRequest(sender,receiver) {
+    await connection.invoke("SendFriendRequest", sender, receiver);
+}
+
+connection.on("SendFriendRequestFunction", (senderId) => {
+    GetFriendRequest(senderId);
+})
 
 
 //------------Chat

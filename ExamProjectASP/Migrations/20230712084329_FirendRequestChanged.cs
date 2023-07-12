@@ -110,13 +110,13 @@ namespace ExamProjectASP.Migrations
                 oldType: "nvarchar(450)");
 
             migrationBuilder.AddColumn<string>(
-                name: "ReceiverId1",
+                name: "ReceiverId",
                 table: "FriendRequests",
                 type: "nvarchar(450)",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "SenderId1",
+                name: "SenderId",
                 table: "FriendRequests",
                 type: "nvarchar(450)",
                 nullable: true);
@@ -124,24 +124,24 @@ namespace ExamProjectASP.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_FriendRequests_ReceiverId1",
                 table: "FriendRequests",
-                column: "ReceiverId1");
+                column: "ReceiverId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FriendRequests_SenderId1",
                 table: "FriendRequests",
-                column: "SenderId1");
+                column: "SenderId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_FriendRequests_AspNetUsers_ReceiverId1",
                 table: "FriendRequests",
-                column: "ReceiverId1",
+                column: "ReceiverId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_FriendRequests_AspNetUsers_SenderId1",
                 table: "FriendRequests",
-                column: "SenderId1",
+                column: "SenderId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id");
         }
