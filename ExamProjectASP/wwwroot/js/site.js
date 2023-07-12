@@ -8,7 +8,7 @@ function SendMessageAjax(recieverId, senderId) {
     var userInput = document.getElementById("user-message");
     var message = userInput.value;
     console.log(message)
-    SendMessageHub(senderId, message)
+    SendMessageHub(recieverId, message)
 
     //await connection.invoke("SendChat", currentUser, message);
     userInput.value = "";
@@ -34,6 +34,20 @@ function SendMessageAjax(recieverId, senderId) {
 
 
 
+}
+
+function AddFriend(senderId, recieverId) {
+    var result = senderId +";"+ recieverId;
+    $.ajax({
+        url: "/Home/AddNotification",
+        type: "POST",
+        data: result,
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data);
+        }
+        
+    })
 }
 
 function GoChat(reciever, sender) {
@@ -85,6 +99,7 @@ function GoChat(reciever, sender) {
 
 function addMessage(user, message) {
     console.log(message)
+    console.log("----------------------------------------------")
     var chatContainer = document.getElementsByClassName("chat-content");
     var newMessage = "";
     //if (user == currentUser) {

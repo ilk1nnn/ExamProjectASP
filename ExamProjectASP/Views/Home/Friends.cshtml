@@ -29,7 +29,7 @@
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="friend-requests" role="tabpanel">
         <div id="usersfortest" class="row justify-content-center">
-            @foreach (var item in ViewBag.Users)
+            @foreach (var item in ViewBag.dto.Users)
             {
                 @if (item.IsOnline)
                 {
@@ -75,7 +75,7 @@
                                 </ul>
                                 <div class="button-group d-flex justify-content-between align-items-center">
                                     <div class="add-friend-btn">
-                                        <button type="submit">Add Friend</button>
+                                        <button onclick="AddFriend('@ViewBag.dto.CurrentUser.Id','@item.Id')" type="submit">Add Friend</button>
                                     </div>
                                     <div class="send-message-btn">
                                         <button type="submit">Send Message</button>
