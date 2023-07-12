@@ -2,13 +2,34 @@
     //alert("Worked")
 }
 
+
+
 function SendMessageAjax(recieverId, senderId) {
 
 
     var userInput = document.getElementById("user-message");
     var message = userInput.value;
     console.log(message)
+    var newMessage = "";
     SendMessageHub(recieverId, message)
+    var chatContainer = document.getElementById("result123");
+        newMessage = `
+                <div class="chat chat-left">
+                    <div class="chat-avatar">
+                        <a routerLink="/profile" class="d-inline-block">
+                            <img src="/images/profile.png" width="50" height="50" class="rounded-circle" alt="image">
+                        </a>
+                    </div>
+
+                    <div class="chat-body">
+                        <div class="chat-message">
+                            <p>'${message}'</p>
+                            <span class="time d-block">7:45 AM</span>
+                        </div>
+                    </div>
+                </div>
+        `
+    chatContainer.innerHTML += newMessage;
 
     //await connection.invoke("SendChat", currentUser, message);
     userInput.value = "";
@@ -55,7 +76,7 @@ function GoChat(reciever, sender) {
     $("#liveChatContainer").html(`
             <div class="live-chat-header d-flex justify-content-between align-items-center">
                 <div class="live-chat-info">
-                    <a href="#"><img src="~/assets/images/user/user-11.jpg" class="rounded-circle" alt="image"></a>
+                    <a href="#"><img src="/images/profile.png" class="rounded-circle" alt="image"></a>
                     <h3>
                             <a>'${result[1]}' </a>
                     </h3>
@@ -75,7 +96,7 @@ function GoChat(reciever, sender) {
             </div>
 
             <div class="live-chat-container">
-                <div class="chat-content">
+                <div id="result123" class="chat-content">
 
 
 
@@ -99,32 +120,13 @@ function GoChat(reciever, sender) {
 
 function addMessage(user, message) {
     console.log(message)
-    console.log("----------------------------------------------")
     var chatContainer = document.getElementsByClassName("chat-content");
     var newMessage = "";
-    //if (user == currentUser) {
-    //    newMessage = `
-    //            <div class="chat chat-left">
-    //                <div class="chat-avatar">
-    //                    <a routerLink="/profile" class="d-inline-block">
-    //                        <img src="~/assets/images/user/user-2.jpg" width="50" height="50" class="rounded-circle" alt="image">
-    //                    </a>
-    //                </div>
-
-    //                <div class="chat-body">
-    //                    <div class="chat-message">
-    //                        <p>'${ message }'</p>
-    //                        <span class="time d-block">7:45 AM</span>
-    //                    </div>
-    //                </div>
-    //            </div>
-    //    `
-    //}
     newMessage = `
         <div class="chat">
                     <div class="chat-avatar">
                         <a routerLink="/profile" class="d-inline-block">
-                            <img src="/assets/images/user/user-11.jpg" width="50" height="50" class="rounded-circle" alt="image">
+                            <img src="/images/profile.png" width="50" height="50" class="rounded-circle" alt="image">
                         </a>
                     </div>
 
@@ -135,9 +137,9 @@ function addMessage(user, message) {
                         </div>
                     </div>
                 </div>
-                `
+                `;
 
-    chatContainer.appendChild(newMessage);
+    chatContainer.innerHTML += newMessage;
 }
 
 
@@ -165,7 +167,7 @@ function Funksiya() {
                         <div class="single-friends-card">
                             <div class="friends-image">
                                 <a href="#">
-                                    <img src="/assets/images/friends/friends-bg-1.jpg" alt="image">
+                                    <img src="/images/profile.png" alt="image">
                                 </a>
                                 <div class="icon">
                                     <a href="#"><i class="flaticon-user"></i></a>
@@ -174,7 +176,7 @@ function Funksiya() {
                             <div class="friends-content">
                                 <div class="friends-info d-flex justify-content-between align-items-center">
                                     <a href="#">
-                                        <img src="/assets/images/friends/friends-1.jpg" alt="image">
+                                        <img src="/images/profile.png" alt="image">
                                     </a>
                                     <div class="text ms-3">
                                         
