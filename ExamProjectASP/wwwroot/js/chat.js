@@ -75,6 +75,15 @@ connection.on("GetMessage", (user, message) => {
 
 })
 
+connection.on("DeclineRequestFunction", (id) => {
+    ChangeAcceptDeclineButtons(id);
+})
+
+async function DeclineRequestFunc(id) {
+
+    await connection.invoke("DeclineRequest",id);
+
+}
 
 
 
