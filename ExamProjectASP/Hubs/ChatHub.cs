@@ -74,7 +74,8 @@ namespace ExamProjectASP.Hubs
 
 		public async Task DeclineRequest(string id)
 		{
-			await Clients.User(id).SendAsync("DeclineRequestFunction");
+            var user = await _userManager.GetUserAsync(_contextAccessor.HttpContext.User);
+            await Clients.User(id).SendAsync("DeclineRequestFunction",user.Id);
 		}
 
     }
