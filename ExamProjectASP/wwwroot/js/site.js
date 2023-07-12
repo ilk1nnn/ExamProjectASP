@@ -187,7 +187,7 @@ function Funksiya(id) {
             let content = ``;
             for (var i = 0; i < data.length; i++) {
                 if (data[i].isOnline == true) {
-                    btnId = `btn${data[i].id}`;
+                    
                     content += `
                     <div  class="col-lg-3 col-sm-6" >
 
@@ -232,7 +232,7 @@ function Funksiya(id) {
                                 </ul>
                                 <div class="button-group d-flex justify-content-between align-items-center">
                                     <div id='${data[i].id}' class="add-friend-btn">
-                                        <button id='${btnId}' onclick="AddFriend('${id}','${data[i].id}')" type="submit">Add Friend</button>
+                                        <button id='btn${ data[i].id }' onclick="AddFriend('${id}','${data[i].id}')" type="submit">Add Friend</button>
                                     </div>
                                     <div class="send-message-btn">
                                         <button type="submit">Send Message</button>
