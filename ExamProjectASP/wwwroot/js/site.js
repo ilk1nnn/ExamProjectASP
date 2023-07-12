@@ -56,9 +56,16 @@ function SendMessageAjax(recieverId, senderId) {
 
 
 }
-
+var btnId = "";
 function AddFriend(senderId, recieverId) {
+
+    console.log("Button Id : " + btnId)
+    var buttonelement = document.getElementById(btnId);
+    buttonelement.innerHTML = "PENDING";
+    SendFriendRequest(senderId, receiverId)
+    
     var result2 = senderId + ";" + recieverId;
+
     $.ajax({
         url: "/Home/AddNotification",
         type: "POST",
@@ -73,9 +80,7 @@ function AddFriend(senderId, recieverId) {
             }
 
     })
-    var buttonelement = document.getElementById("btn" + receiverId);
-    buttonelement.innerHTML = "PENDING";
-    SendFriendRequest(senderId,receiverId)
+    
 }
 
 function GoChat(reciever, sender) {
@@ -171,17 +176,17 @@ function GetFriendRequest(senderId) {
 
 function Funksiya(id) {
     console.log("Funksiya Worked")
-    console.log("Id"+id);
+    console.log("Id" + id);
     $.ajax({
         url: "/Home/GetAllOnlineUsers",
         method: "GET",
         success: function (data) {
-            console.log(data)
-            console.log("hello")
+
+
             let content = ``;
             for (var i = 0; i < data.length; i++) {
                 if (data[i].isOnline == true) {
-
+                    btnId = `btn${data[i].id}`;
                     content += `
                     <div  class="col-lg-3 col-sm-6" >
 
@@ -226,7 +231,7 @@ function Funksiya(id) {
                                 </ul>
                                 <div class="button-group d-flex justify-content-between align-items-center">
                                     <div id='${data[i].id}' class="add-friend-btn">
-                                        <button id='btn${data[i].id}' onclick='AddFriend('${id}','${data[i].id}')' type="submit">Add Friend</button>
+                                        <button id='${btnId}' onclick="AddFriend('${id}','${data[i].id}')" type="submit">Add Friend</button>
                                     </div>
                                     <div class="send-message-btn">
                                         <button type="submit">Send Message</button>
@@ -237,7 +242,6 @@ function Funksiya(id) {
                 </div >
             
 `;
-
                 }
             }
             $("#usersfortest").html(content);
