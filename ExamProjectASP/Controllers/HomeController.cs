@@ -183,6 +183,16 @@ namespace ExamProjectASP.Controllers
         }
 
         [HttpPost]
+        public IActionResult DeclineRequest(string id)
+        {
+            var currentUser = _userManager.GetUserAsync(HttpContext.User).Result;
+            var request = _db.FriendRequests.FirstOrDefault(r => r.ReceiverId == id && r.SenderId == currentUser.Id);
+            _db.FriendRequests.Remove(request);
+            _db.SaveChanges();
+            return Ok(request);
+        }
+
+        [HttpPost]
         public IActionResult AddNotification(string result)
         {
             var result2 = result.Split(';');

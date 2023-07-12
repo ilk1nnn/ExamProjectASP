@@ -71,5 +71,11 @@ namespace ExamProjectASP.Hubs
 			await Clients.User(receiver).SendAsync("SendFriendRequestFunction", sender);
 		}
 
+
+		public async Task DeclineRequest(string id)
+		{
+			await Clients.User(id).SendAsync("DeclineRequestFunction");
+		}
+
     }
 }

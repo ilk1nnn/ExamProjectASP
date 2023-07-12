@@ -56,7 +56,7 @@ function SendMessageAjax(recieverId, senderId) {
 
 
 }
-
+var deyisen = "";
 function AddFriend(senderId, recieverId) {
 
     var result2 = senderId + ";" + recieverId;
@@ -80,6 +80,29 @@ function AddFriend(senderId, recieverId) {
     SendFriendRequest(senderId, result2.split(';')[1])
     
 }
+
+
+
+function DeclineRequestCall(id) {
+    $.ajax({
+        url: "/Home/DeclineRequest",
+        type: "POST",
+        dataType: 'JSON',
+        data: { result: id },
+        success: function (data) {
+            console.log(data);
+        },
+        error:
+            function (response) {
+                console.log(response);
+            }
+    })
+    DeclineRequestFunc(id);
+}
+
+
+
+
 
 function GoChat(reciever, sender) {
     let result = reciever.split(';');
@@ -162,7 +185,7 @@ function GetFriendRequest(senderId) {
 
     <section style='display:inline-block;'>
         <button  style='background-color:green;' type="submit">Accept Request</button>
-        <button style='background-color:red;' type="submit">Decline Request</button>
+        <button onclick="DeclineRequestCall('${senderId}')" style='background-color:red;' type="submit">Decline Request</button>
     </section>
 
     
@@ -170,6 +193,18 @@ function GetFriendRequest(senderId) {
 `;
 }
 
+
+function ChangeAcceptDeclineButtons(senderId) {
+    console.log("isliyir");
+    let element = document.getElementById(senderId);
+    element.innerHTML = `
+
+   
+    <button id='btn${deyisen}' onclick="AddFriend('${senderId}','${deyisen}')" type="submit">Add Friend</button>
+    
+
+`;
+}
 
 
 function Funksiya(id) {
