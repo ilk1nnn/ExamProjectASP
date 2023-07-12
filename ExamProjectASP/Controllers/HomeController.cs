@@ -5,6 +5,7 @@ using ExamProjectASP.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using System.Diagnostics;
 
@@ -183,12 +184,12 @@ namespace ExamProjectASP.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeclineRequest(string id)
+        public async Task<IActionResult> DeclineRequest(string result)
         {
-            var currentUser = _userManager.GetUserAsync(HttpContext.User).Result;
-            var request = _db.FriendRequests.FirstOrDefault(r => r.ReceiverId == id && r.SenderId == currentUser.Id);
-            _db.FriendRequests.Remove(request);
-            _db.SaveChanges();
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var request = await _db.FriendRequests.FirstOrDefaultAsync(r => r.ReceiverId == result && r.SenderId == currentUser.Id);
+             _db.FriendRequests.Remove(request);
+           await _db.SaveChangesAsync();
             return Ok(request);
         }
 

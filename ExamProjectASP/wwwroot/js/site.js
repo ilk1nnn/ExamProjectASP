@@ -98,6 +98,12 @@ function DeclineRequestCall(id) {
             }
     })
     DeclineRequestFunc(id);
+    let element = document.getElementById(id);
+    element.innerHTML = `
+
+    <button id='btn${deyisen}' onclick="AddFriend('${id}','${deyisen}')" type="submit">Add Friend</button>
+
+`;
 }
 
 
