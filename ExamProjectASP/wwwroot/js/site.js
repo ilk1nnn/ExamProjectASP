@@ -59,12 +59,9 @@ function SendMessageAjax(recieverId, senderId) {
 var btnId = "";
 function AddFriend(senderId, recieverId) {
 
-    console.log("Button Id : " + btnId)
-    var buttonelement = document.getElementById(btnId);
-    buttonelement.innerHTML = "PENDING";
-    SendFriendRequest(senderId, receiverId)
-    
     var result2 = senderId + ";" + recieverId;
+    
+    
 
     $.ajax({
         url: "/Home/AddNotification",
@@ -80,6 +77,10 @@ function AddFriend(senderId, recieverId) {
             }
 
     })
+    let btnId2 = `btn${recieverId}`;
+    var buttonelement = document.getElementById(btnId2);
+    buttonelement.innerHTML = "PENDING";
+    SendFriendRequest(senderId, result2.split(';')[1])
     
 }
 
