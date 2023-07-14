@@ -184,7 +184,7 @@ function GoChat(reciever, sender) {
             <div class="live-chat-container">
                 <div id="result123" class="chat-content">
 
-
+                    
 
                 </div>
 
@@ -206,9 +206,8 @@ function GoChat(reciever, sender) {
 
 function addMessage(user, message) {
     console.log(message)
-    var chatContainer = document.getElementsByClassName("chat-content");
-    var newMessage = "";
-    newMessage = `
+    let chatContainer = document.getElementById("result123");
+    let newMessage = `
         <div class="chat">
                     <div class="chat-avatar">
                         <a routerLink="/profile" class="d-inline-block">
@@ -252,9 +251,8 @@ function ChangeAcceptDeclineButtons(senderId) {
     console.log("isliyir");
     let element = document.getElementById(senderId);
     element.innerHTML = `
-
    
-    <button id='btn${deyisen}'  type="submit">Add Friend</button>
+    <button id='btn${deyisen}' onclick="AddFriend('${id}','${deyisen}')" type="submit">Add Friend</button>
     
 
 `;
@@ -292,7 +290,6 @@ function Funksiya(id) {
             for (var i = 0; i < data.length; i++) {
                 console.log(data[i].id)
                 if (data[i].isOnline == true) {
-                    if (id != data[i].id) {
                         console.log("This is my id: " + id + " This is other id with same: " + data[i].id)
                         content += `
                     <div  class="col-lg-3 col-sm-6" >
@@ -350,7 +347,6 @@ function Funksiya(id) {
             
 `;
                     }
-                }
             }
             $("#usersfortest").html(content);
 
