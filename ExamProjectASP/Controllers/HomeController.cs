@@ -187,7 +187,7 @@ namespace ExamProjectASP.Controllers
         public async Task<IActionResult> DeclineRequest(string result)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var request = await _db.FriendRequests.FirstOrDefaultAsync(r => r.ReceiverId == result && r.SenderId == currentUser.Id);
+            var request = _db.FriendRequests.FirstOrDefault(r => r.ReceiverId == result && r.SenderId == currentUser.Id);
              _db.FriendRequests.Remove(request);
            await _db.SaveChangesAsync();
             return Ok(request);
