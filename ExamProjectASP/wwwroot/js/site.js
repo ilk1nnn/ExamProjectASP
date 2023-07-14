@@ -108,7 +108,54 @@ function DeclineRequestCall(id) {
 
 
 
+function AcceptRequestCall(id) {
+    $.ajax({
+        url: "/Home/AcceptRequest",
+        type: "POST",
+        dataType: 'JSON',
+        data: { result: id },
+        success: function (data) {
+            console.log(data);
+        },
+        error:
+            function (response) {
+                console.log(response);
+            }
+    })
+    AcceptRequestFunc(id);
+    ChangeAcceptButton(id);
+}
 
+
+
+function UnFollowAjaxCall(id) {
+    $.ajax({
+        url: "/Home/UnFollowRequest",
+        type: "POST",
+        dataType: 'JSON',
+        data: { result: id },
+        success: function (data) {
+            console.log(data);
+        },
+        error:
+            function (response) {
+                console.log(response);
+            }
+    })
+    UnFollowFunc(id);
+    ChangeUnFollowButtons(id);
+}
+
+
+function ChangeUnFollowButtons(id) {
+    console.log("isliyir");
+    let element = document.getElementById(id);
+    element.innerHTML = `
+
+            <button id='btn${deyisen}' onclick="AddFriend('${id}','${deyisen}')" type="submit">Add Friend</button>
+
+`;
+}
 
 function GoChat(reciever, sender) {
     let result = reciever.split(';');
@@ -190,7 +237,7 @@ function GetFriendRequest(senderId) {
     element.innerHTML = `
 
     <section style='display:inline-block;'>
-        <button  style='background-color:green;' type="submit">Accept Request</button>
+        <button onclick="AcceptRequestCall('${senderId}')"  style='background-color:green;' type="submit">Accept Request</button>
         <button onclick="DeclineRequestCall('${senderId}')" style='background-color:red;' type="submit">Decline Request</button>
     </section>
 
@@ -207,7 +254,20 @@ function ChangeAcceptDeclineButtons(senderId) {
     element.innerHTML = `
 
    
-    <button id='btn${deyisen}' onclick="AddFriend('${senderId}','${deyisen}')" type="submit">Add Friend</button>
+    <button id='btn${deyisen}'  type="submit">Add Friend</button>
+    
+
+`;
+}
+
+
+function ChangeAcceptButton(senderId) {
+    console.log("isliyir");
+    let element = document.getElementById(senderId);
+    element.innerHTML = `
+
+
+    <button id='btn${deyisen}' onclick="UnFollowAjaxCall('${senderId}')"  type="submit">UnFollow</button>
     
 
 `;

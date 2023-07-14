@@ -86,6 +86,23 @@ async function DeclineRequestFunc(id) {
 }
 
 
+connection.on("AcceptRequestFunction", (id) => {
+    ChangeAcceptButton(id);
+})
+
+async function AcceptRequestFunc(id) {
+    await connection.invoke("AcceptRequest", id);
+}
+
+connection.on("UnFollowFunction", (id) => {
+    ChangeUnFollowButtons(id);
+})
+
+
+
+async function UnFollowFunc(id) {
+    await connection.invoke("UnFollowRequest", id);
+}
 
 
 

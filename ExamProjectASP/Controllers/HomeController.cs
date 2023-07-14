@@ -187,12 +187,11 @@ namespace ExamProjectASP.Controllers
         public async Task<IActionResult> DeclineRequest(string result)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var cu = currentUser;
             //var request =  _db.FriendRequests.FirstOrDefault(r => r.SenderId == cu.Id);
             var request = new FriendRequest();
             foreach (var item in _db.FriendRequests)
             {
-                if(item.SenderId == cu.Id)
+                if((item.SenderId == currentUser.Id || item.SenderId == result) || (item.ReceiverId == currentUser.Id || item.ReceiverId == result))
                 {
                     request = item;
                     break;
@@ -204,11 +203,49 @@ namespace ExamProjectASP.Controllers
         
         }
 
+		[HttpPost]
+		public async Task<IActionResult> AcceptRequest(string result)
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+			//var request =  _db.FriendRequests.FirstOrDefault(r => r.SenderId == cu.Id);
+			var request = new FriendRequest();
+			foreach (var item in _db.FriendRequests)
+			{
+				if ((item.SenderId == currentUser.Id || item.SenderId == result) || (item.ReceiverId == currentUser.Id || item.ReceiverId == result))
+				{
+					request = item;
+					break;
+				}
+			}
+            _db.Friends.Add(new Friend { FirstUserId = currentUser.Id, SecondUserId = result });
+			_db.FriendRequests.Remove(request);
+			await _db.SaveChangesAsync();
+			return Ok();
+
+		}
 
 
+		[HttpPost]
+		public async Task<IActionResult> UnFollowRequest(string result)
+		{
+			var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var request = new Friend();
+			foreach (var item in _db.Friends)
+			{
+				if ((item.FirstUserId == currentUser.Id || item.FirstUserId == result) || (item.SecondUserId == currentUser.Id || item.SecondUserId == result))
+				{
+					request = item;
+					break;
+				}
+			}
+			_db.Friends.Remove(request);
+			await _db.SaveChangesAsync();
+			return Ok();
+
+		}
 
 
-        [HttpPost]
+		[HttpPost]
         public IActionResult AddNotification(string result)
         {
             var result2 = result.Split(';');

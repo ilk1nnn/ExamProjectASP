@@ -78,5 +78,17 @@ namespace ExamProjectASP.Hubs
             await Clients.User(id).SendAsync("DeclineRequestFunction",user.Id);
 		}
 
-    }
+		public async Task AcceptRequest(string id)
+		{
+			var user = await _userManager.GetUserAsync(_contextAccessor.HttpContext.User);
+			await Clients.User(id).SendAsync("AcceptRequestFunction", user.Id);
+		}
+
+		public async Task UnFollowRequest(string id)
+		{
+			var user = await _userManager.GetUserAsync(_contextAccessor.HttpContext.User);
+			await Clients.User(id).SendAsync("UnFollowFunction", user.Id);
+		}
+
+	}
 }
