@@ -78,7 +78,7 @@ function AddFriend(senderId, recieverId) {
     var buttonelement = document.getElementById(btnId2);
     buttonelement.innerHTML = "PENDING";
     SendFriendRequest(senderId, result2.split(';')[1])
-    
+
 }
 
 
@@ -276,7 +276,7 @@ function ChangeAcceptButton(senderId) {
 
 function Funksiya(id) {
     console.log("Funksiya Worked")
-    console.log("Id" + id);
+    console.log("Id: " + id);
     $.ajax({
         url: "/Home/GetAllOnlineUsers",
         method: "GET",
@@ -284,10 +284,17 @@ function Funksiya(id) {
 
 
             let content = ``;
+            console.log("---------------------------------------------------------------------------")
+            console.log("---------------------------------------------------------------------------")
+            console.log("---------------------------------------------------------------------------")
+            console.log("---------------------------------------------------------------------------")
+            console.log("---------------------------------------------------------------------------")
             for (var i = 0; i < data.length; i++) {
+                console.log(data[i].id)
                 if (data[i].isOnline == true) {
-                    
-                    content += `
+                    if (id != data[i].id) {
+                        console.log("This is my id: " + id + " This is other id with same: " + data[i].id)
+                        content += `
                     <div  class="col-lg-3 col-sm-6" >
 
                         <div class="single-friends-card">
@@ -331,7 +338,7 @@ function Funksiya(id) {
                                 </ul>
                                 <div class="button-group d-flex justify-content-between align-items-center">
                                     <div id='${data[i].id}' class="add-friend-btn">
-                                        <button id='btn${ data[i].id }' onclick="AddFriend('${id}','${data[i].id}')" type="submit">Add Friend</button>
+                                        <button id='btn${data[i].id}' onclick="AddFriend('${id}','${data[i].id}')" type="submit">Add Friend</button>
                                     </div>
                                     <div class="send-message-btn">
                                         <button type="submit">Send Message</button>
@@ -342,6 +349,7 @@ function Funksiya(id) {
                 </div >
             
 `;
+                    }
                 }
             }
             $("#usersfortest").html(content);
