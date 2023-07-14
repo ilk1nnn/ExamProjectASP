@@ -188,7 +188,16 @@ namespace ExamProjectASP.Controllers
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             var cu = currentUser;
-            var request =  _db.FriendRequests.FirstOrDefault(r => r.ReceiverId == result && r.SenderId == cu.Id);
+            //var request =  _db.FriendRequests.FirstOrDefault(r => r.SenderId == cu.Id);
+            var request = new FriendRequest();
+            foreach (var item in _db.FriendRequests)
+            {
+                if(item.SenderId == cu.Id)
+                {
+                    request = item;
+                    break;
+                }
+            }
             _db.FriendRequests.Remove(request);
             await _db.SaveChangesAsync();
             return Ok(request);
